@@ -230,6 +230,17 @@ const tasks = [
     falseTasksBtn.classList.add("btn-outline-primary");
     allTasksBtn.classList.remove("btn-outline-primary");
     allTasksBtn.classList.add("btn-primary");
+    const fragment = document.createDocumentFragment();
+
+    Object.values(arrOfTasks).forEach((task) => {
+      const li = taskListTemplate(task);
+      fragment.appendChild(li);
+    });
+    while (listContainer.firstChild) {
+      listContainer.removeChild(listContainer.firstChild);
+    }
+    listContainer.appendChild(fragment);
+    console.log(listContainer);
   }
 
   function falseTasksFilterHandler(e) {
