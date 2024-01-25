@@ -223,6 +223,14 @@ const tasks = [
   }
 
   //Фильтр тасков по кнопкам (все таски и незавершенные таски)
+  /*
+   * Конечно я добился того чтобы по клику по разным кнопкам показывались списки которые мне нужны, но они друг с другом не дружат
+   * К примеру при клике на кнопку "Незавершенные задачи" у нас полностью стирается старый список и из того самого исходного массива объектов по новой сортируется
+   * и составляется список с объектами у которых completed = false. Так же и наоборот, при клике на "Все задачи" у нас срабатывает renderAllTasks.
+   * Но когда я завершаю задачу в поле "Незавершенные задачи" она: (во 1) - не исчезает из-за того что становится true, во вторых, поле "Все задачи" абсолютно никак
+   * не имеет отношения к этому клику, там рендерятся совершенно новые таски.
+   * На этом и застрял.
+   */
 
   function allTasksFilterHandler(e) {
     e.preventDefault();
@@ -230,6 +238,11 @@ const tasks = [
     falseTasksBtn.classList.add("btn-outline-primary");
     allTasksBtn.classList.remove("btn-outline-primary");
     allTasksBtn.classList.add("btn-primary");
+
+    while (listContainer.firstChild) {
+      listContainer.removeChild(listContainer.firstChild);
+    }
+    renderAllTasks(objOfTasks);
   }
 
   function falseTasksFilterHandler(e) {
@@ -239,18 +252,21 @@ const tasks = [
     falseTasksBtn.classList.remove("btn-outline-primary");
     falseTasksBtn.classList.add("btn-primary");
 
-    const fragment = document.createDocumentFragment();
-    const falseTasks = arrOfTasks.filter((task) => {
-      return task.completed == false;
-    });
-    Object.values(falseTasks).forEach((task) => {
-      const li = taskListTemplate(task);
-      fragment.appendChild(li);
-    });
     while (listContainer.firstChild) {
       listContainer.removeChild(listContainer.firstChild);
     }
+
+    const falseTasks = arrOfTasks.filter((task) => task.completed == false);
+    const objfalseTasks = falseTasks.reduce((acc, task) => {
+      acc[task._id] = task;
+      return acc;
+    }, {});
+
+    const fragment = document.createDocumentFragment();
+    Object.values(objfalseTasks).forEach((task) => {
+      const li = taskListTemplate(task);
+      fragment.appendChild(li);
+    });
     listContainer.appendChild(fragment);
-    console.log(listContainer);
   }
 })(tasks);
