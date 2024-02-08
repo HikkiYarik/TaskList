@@ -174,6 +174,7 @@ const tasks = [
   function completeTask(id) {
     if (objOfTasks[id].completed == false) {
       objOfTasks[id].completed = true;
+      //  listContainer.childNodes.forEach((list) => console.log(list[id]));
     } else if (objOfTasks[id].completed == true) {
       objOfTasks[id].completed = false;
     }
@@ -223,45 +224,27 @@ const tasks = [
   }
 
   //Фильтр тасков по кнопкам (все таски и незавершенные таски)
+  /*
+   * Конечно я добился того чтобы по клику по разным кнопкам показывались списки которые мне нужны, но они друг с другом не дружат
+   * К примеру при клике на кнопку "Незавершенные задачи" у нас полностью стирается старый список и из того самого исходного массива объектов по новой сортируется
+   * и составляется список с объектами у которых completed = false. Так же и наоборот, при клике на "Все задачи" у нас срабатывает renderAllTasks.
+   * Но когда я завершаю задачу в поле "Незавершенные задачи" она: (во 1) - не исчезает из-за того что становится true, во вторых, поле "Все задачи" абсолютно никак
+   * не имеет отношения к этому клику, там рендерятся совершенно новые таски.
+   * На этом и застрял.
+   * Буду пробовать решать проблему через СSS variables, но ещё не знаю как.
+   */
 
-  function allTasksFilterHandler(e) {
-    e.preventDefault();
+  function allTasksFilterHandler() {
     falseTasksBtn.classList.remove("btn-primary");
     falseTasksBtn.classList.add("btn-outline-primary");
     allTasksBtn.classList.remove("btn-outline-primary");
     allTasksBtn.classList.add("btn-primary");
-    const fragment = document.createDocumentFragment();
-
-    Object.values(arrOfTasks).forEach((task) => {
-      const li = taskListTemplate(task);
-      fragment.appendChild(li);
-    });
-    while (listContainer.firstChild) {
-      listContainer.removeChild(listContainer.firstChild);
-    }
-    listContainer.appendChild(fragment);
-    console.log(listContainer);
   }
 
-  function falseTasksFilterHandler(e) {
-    e.preventDefault();
+  function falseTasksFilterHandler() {
     allTasksBtn.classList.remove("btn-primary");
     allTasksBtn.classList.add("btn-outline-primary");
     falseTasksBtn.classList.remove("btn-outline-primary");
     falseTasksBtn.classList.add("btn-primary");
-
-    const fragment = document.createDocumentFragment();
-    const falseTasks = arrOfTasks.filter((task) => {
-      return task.completed == false;
-    });
-    Object.values(falseTasks).forEach((task) => {
-      const li = taskListTemplate(task);
-      fragment.appendChild(li);
-    });
-    while (listContainer.firstChild) {
-      listContainer.removeChild(listContainer.firstChild);
-    }
-    listContainer.appendChild(fragment);
-    console.log(listContainer);
   }
 })(tasks);
