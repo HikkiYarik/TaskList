@@ -174,6 +174,7 @@ const tasks = [
   function completeTask(id) {
     if (objOfTasks[id].completed == false) {
       objOfTasks[id].completed = true;
+      //  listContainer.childNodes.forEach((list) => console.log(list[id]));
     } else if (objOfTasks[id].completed == true) {
       objOfTasks[id].completed = false;
     }
@@ -230,43 +231,20 @@ const tasks = [
    * Но когда я завершаю задачу в поле "Незавершенные задачи" она: (во 1) - не исчезает из-за того что становится true, во вторых, поле "Все задачи" абсолютно никак
    * не имеет отношения к этому клику, там рендерятся совершенно новые таски.
    * На этом и застрял.
+   * Буду пробовать решать проблему через СSS variables, но ещё не знаю как.
    */
 
-  function allTasksFilterHandler(e) {
-    e.preventDefault();
+  function allTasksFilterHandler() {
     falseTasksBtn.classList.remove("btn-primary");
     falseTasksBtn.classList.add("btn-outline-primary");
     allTasksBtn.classList.remove("btn-outline-primary");
     allTasksBtn.classList.add("btn-primary");
-
-    while (listContainer.firstChild) {
-      listContainer.removeChild(listContainer.firstChild);
-    }
-    renderAllTasks(objOfTasks);
   }
 
-  function falseTasksFilterHandler(e) {
-    e.preventDefault();
+  function falseTasksFilterHandler() {
     allTasksBtn.classList.remove("btn-primary");
     allTasksBtn.classList.add("btn-outline-primary");
     falseTasksBtn.classList.remove("btn-outline-primary");
     falseTasksBtn.classList.add("btn-primary");
-
-    while (listContainer.firstChild) {
-      listContainer.removeChild(listContainer.firstChild);
-    }
-
-    const falseTasks = arrOfTasks.filter((task) => task.completed == false);
-    const objfalseTasks = falseTasks.reduce((acc, task) => {
-      acc[task._id] = task;
-      return acc;
-    }, {});
-
-    const fragment = document.createDocumentFragment();
-    Object.values(objfalseTasks).forEach((task) => {
-      const li = taskListTemplate(task);
-      fragment.appendChild(li);
-    });
-    listContainer.appendChild(fragment);
   }
 })(tasks);
