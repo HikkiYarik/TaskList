@@ -11,6 +11,14 @@
       crossorigin="anonymous"
     />
     <title>Todo List</title>
+    <style>
+      :root {
+        --visability: default;
+      }
+      .list-group-item {
+        visibility: var(--visability);
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -49,7 +57,7 @@
       <div class="btn-group-section mt-5">
         <div class="container">
           <div class="btn-group col" role="group" aria-label="">
-            <button type="button" class="btn btn-outline-primary btn-all-tasks">
+            <button type="button" class="btn btn-primary btn-all-tasks">
               Все задачи
             </button>
             <button
