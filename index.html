@@ -18,6 +18,9 @@
       .list-group-item {
         visibility: var(--visability);
       }
+      ul.unfinished-tasks > li.finished {
+        display: none !important;
+      }
     </style>
   </head>
   <body>
@@ -75,6 +78,9 @@
         </div>
       </div>
     </div>
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
+    <script src="data.js"></script>
+    <script src="render.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
