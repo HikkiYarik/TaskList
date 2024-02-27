@@ -10,20 +10,20 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="styles.css" />
     <title>Todo List</title>
-    <style>
-      :root {
-        --visability: default;
-      }
-      .list-group-item {
-        visibility: var(--visability);
-      }
-      ul.unfinished-tasks > li.finished {
-        display: none !important;
-      }
-    </style>
   </head>
   <body>
+    <nav class="header navbar navbar-dark bg-primary">
+      <a class="navbar-brand">Навигация</a>
+      <form class="form-inline" action="">
+        <select class="form-control form-control-sm" id="themeSelect">
+          <option value="default">Стандартная тема</option>
+          <option value="light">Светлая тема</option>
+          <option value="dark">Тёмная тема</option>
+        </select>
+      </form>
+    </nav>
     <div class="wrapper">
       <div class="form-section mt-5">
         <div class="container">
@@ -79,6 +79,7 @@
       </div>
     </div>
     <!-- <script src="app.js"></script> -->
+    <script src="themes.js"></script>
     <script src="data.js"></script>
     <script src="render.js"></script>
     <script src="index.js"></script>
