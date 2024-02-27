@@ -164,10 +164,12 @@ const tasks = [
       el.classList.remove("btn-primary");
       el.classList.add("btn-success");
       el.textContent = "Задача завершена / Восстановить";
+      el.parentNode.classList.add("finished");
     } else if (complete == false) {
       el.classList.remove("btn-success");
       el.classList.add("btn-primary");
       el.textContent = "Завершить задачу";
+      el.parentNode.classList.remove("finished");
     }
   }
 
@@ -216,9 +218,9 @@ const tasks = [
 
   deleteMessHandler(listContainer, val);
   function deleteMessHandler(list, el) {
-    if (Boolean(list.childNodes.length) == true) {
+    if (list.childNodes.length) { // list.childNodes.length == 0 - false 
       el.classList.add("d-none");
-    } else if (Boolean(list.childNodes.length) == false) {
+    } else if (!list.childNodes.length) {
       el.classList.remove("d-none");
     }
   }
@@ -239,6 +241,7 @@ const tasks = [
     falseTasksBtn.classList.add("btn-outline-primary");
     allTasksBtn.classList.remove("btn-outline-primary");
     allTasksBtn.classList.add("btn-primary");
+    listContainer.classList.remove("unfinished-tasks");
   }
 
   function falseTasksFilterHandler() {
@@ -246,6 +249,7 @@ const tasks = [
     allTasksBtn.classList.add("btn-outline-primary");
     falseTasksBtn.classList.remove("btn-outline-primary");
     falseTasksBtn.classList.add("btn-primary");
+    listContainer.classList.add("unfinished-tasks");
   }
 
   //reRender
