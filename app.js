@@ -247,4 +247,6 @@ const tasks = [
     falseTasksBtn.classList.remove("btn-outline-primary");
     falseTasksBtn.classList.add("btn-primary");
   }
+
+  //reRender
 })(tasks);
