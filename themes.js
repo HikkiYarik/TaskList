@@ -1,3 +1,4 @@
+// Объект с стилями для тем
 const themes = {
   default: {
     "--base-text-color": "#212529",
@@ -42,9 +43,9 @@ const themes = {
   },
   light: {
     "--base-text-color": "#212529",
-    "--header-bg": "#fff",
+    "--header-bg": "#E6E6FA",
     "--header-text-color": "#212529",
-    "--default-btn-bg": "#fff",
+    "--default-btn-bg": "#E6E6FA",
     "--default-btn-text-color": "#212529",
     "--default-btn-hover-bg": "#e8e7e7",
     "--default-btn-border-color": "#343a40",
@@ -54,33 +55,58 @@ const themes = {
     "--danger-btn-hover-bg": "#ef808a",
     "--danger-btn-border-color": "#e2818a",
     "--input-border-color": "#ced4da",
-    "--input-bg-color": "#fff",
+    "--input-bg-color": "#E6E6FA",
     "--input-text-color": "#495057",
-    "--input-focus-bg-color": "#fff",
+    "--input-focus-bg-color": "#E6E6FA",
     "--input-focus-text-color": "#495057",
     "--input-focus-border-color": "#78818a",
     "--input-focus-box-shadow": "0 0 0 0.2rem rgba(141, 143, 146, 0.25)",
   },
 };
-let lastSelectedTheme = "default";
 
+// объявление переменной которая забирает из локал стореджа текущую выбранную тему
+// если в хранилище пусто тогда вместо выбранной темы в значение залетает дефолтная
+let lastSelectedTheme = localStorage.getItem("app_theme") || "default";
+//объявлять стандартной темой последнюю из локал стореджа
+setTheme(lastSelectedTheme);
+
+//наш селект
 const themeSelect = document.getElementById("themeSelect");
+//эвент с обработчиком на селект и темы которые мы в нём выбираем.
 themeSelect.addEventListener("change", onThemeSelectHandler);
 
-function onThemeSelectHandler(e) {
-  const selectedTheme = themeSelect.value;
-  //   const isConfirmed = confirm(
-  //     `Вы действительно хотите изменить тему: ${selectedTheme}?`
-  //   );
-  //   if (!isConfirmed) {
-  //     themeSelect.value = lastSelectedTheme;
+//обработчик выбора темы
+function onThemeSelectHandler(event) {
+  //константа которая сохраняет вэлью выбранной темы
+  let selectedTheme = themeSelect.value;
+
+  /*
+   * На данный момент существует проблема
+   * Тема в локал сторедже сохраняется, а значение темы в селекте после перезагрузки нет.
+   * Итого после перезагрузки у нас висит к примеру тёмная тема, но в селекте стандартная, так как в html она физически первая
+   */
+  // Object.values(themeSelect).forEach((child) => {
+  //   if (child.value != selectedTheme) {
   //     return;
   //   }
+  //   child.remove();
+  //   themeSelect.prepend(child);
+  // });
+
+  //передача в функцию установки выбранной темы аргумента с вэлью выбранной темы
   setTheme(selectedTheme);
+
+  //lastSelectedTheme = selectedTheme;
+
+  //запись в локал сторэдж ключа и значения текущей выбранной темы
+  localStorage.setItem("app_theme", selectedTheme);
 }
 
+//функция установки выбранной темы
 function setTheme(name) {
+  //константа вбирающая в себя объект(выбранную тему) с ключами и значениями стилей
   const selectedThemeObj = themes[name];
+  //перебор по ключам и значениям нашего объекта и назначение документу стилей из него
   Object.entries(selectedThemeObj).forEach(([key, value]) => {
     document.documentElement.style.setProperty(key, value);
   });
