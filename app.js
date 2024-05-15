@@ -251,6 +251,4 @@ const tasks = [
     falseTasksBtn.classList.add("btn-primary");
     listContainer.classList.add("unfinished-tasks");
   }
-
-  //reRender
 })(tasks);

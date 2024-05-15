@@ -1,10 +1,3 @@
-const allTasksBtn = document.querySelector(
-  ".btn-group-section .btn-group .btn-all-tasks"
-);
-const falseTasksBtn = document.querySelector(
-  ".btn-group-section .btn-group .btn-false-tasks"
-);
-
 const tasks = getTasks();
 
 const allTasksBtn = document.querySelector(
@@ -61,14 +54,13 @@ function onDeleteHandler({ target }) {
     // получаем ид задачи
     const parentID = target.closest("[data-task-id]").dataset.taskId;
     // получаем название задачи
-    const { title } = tasks[parentID];
-    // получаем подтверждение на удаление
-    const isConfirm = confirm(`Правда удалить задачу ${title}?`);
-    if (!isConfirm) return;
+
     // удаляем задачу из списка локальных общих задач
     delete tasks[parentID];
     // обновляем глобальный список задач
     setTasks(tasks);
+    // перепроверка на пустоту списка задач
+    deleteMessHandler(listContainer, val);
   }
 }
 
@@ -83,35 +75,4 @@ function onCompleteHandler({ target }) {
     // обновляем глобальный список задач
     setTasks(tasks);
   }
-}
-
-const allTasksBtn = document.querySelector(
-  ".btn-group-section .btn-group .btn-all-tasks"
-);
-const falseTasksBtn = document.querySelector(
-  ".btn-group-section .btn-group .btn-false-tasks"
-);
-
-// кнопка отобразить все задачи
-function allTasksFilterHandler() {
-  falseTasksBtn.classList.remove("btn-primary");
-  falseTasksBtn.classList.add("btn-outline-primary");
-  allTasksBtn.classList.remove("btn-outline-primary");
-  allTasksBtn.classList.add("btn-primary");
-  // устанавливаем значение глобальной переменной unfinished
-  unfinished = false;
-  // обновляем глобальный список задач
-  setTasks(tasks);
-}
-
-// кнопка показать только незавершённые задачи
-function falseTasksFilterHandler() {
-  allTasksBtn.classList.remove("btn-primary");
-  allTasksBtn.classList.add("btn-outline-primary");
-  falseTasksBtn.classList.remove("btn-outline-primary");
-  falseTasksBtn.classList.add("btn-primary");
-  // устанавливаем значение глобальной переменной unfinished
-  unfinished = true;
-  // обновляем глобальный список задач
-  setTasks(tasks);
 }
