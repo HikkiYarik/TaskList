@@ -10,33 +10,11 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="styles.css" />
     <title>Todo List</title>
-    <style>
-      :root {
-        --visability: default;
-      }
-      .list-group-item {
-        visibility: var(--visability);
-      }
-      ul.unfinished-tasks > li.finished {
-        display: none !important;
-      }
-    </style>
   </head>
   <body>
-    <button class="btn btn-primary w-100 switch-btn">
-      <p class="font-weight-bold h4 switch-text">
-        Task list. Click for switch to "Users"
-      </p>
-    </button>
-    <div class="users-wrapper d-none">
-      <div class="users-list-section mt-5">
-        <div class="container">
-          <ul class="users-group"></ul>
-        </div>
-      </div>
-    </div>
-    <div class="task-list-wrapper active">
+    <div class="wrapper">
       <div class="form-section mt-5">
         <div class="container">
           <div class="row">
@@ -91,7 +69,6 @@
       </div>
     </div>
     <!-- <script src="app.js"></script> -->
-
     <script src="data.js"></script>
     <script src="render.js"></script>
     <script src="index.js"></script>
