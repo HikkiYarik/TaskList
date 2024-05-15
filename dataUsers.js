@@ -58,7 +58,7 @@ function getUsers() {
       [map[2]]: `${obj.isActive}`,
       [map[3]]: `${obj.balance}`,
       [map[4]]: `${obj.email}`,
-      [map[5]]: keys(),
+      // [map[5]]: keys(),
     };
     newUsers.push(newObj);
   });
