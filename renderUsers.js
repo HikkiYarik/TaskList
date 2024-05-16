@@ -42,14 +42,6 @@ function theadTemplate() {
 // полноценно собранный thead из функции записать в переменную.
 const thead = theadTemplate();
 
-// const usrsObject = Object.values(usrs).reduce((acc, user) => {
-//   for (key in usrs) {
-//     acc[key] = user;
-//   }
-
-//   return acc;
-// }, {});
-
 // tbody таблицы (основное тело, куда будут писаться пользователи.)
 function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
   // создать элемент tbody
@@ -59,6 +51,7 @@ function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
   // создать элемент th и дать ему классы и стили
   const th = document.createElement("th");
   th.classList.add("table-secondary");
+
   th.style.color = "black";
   th.style.fontWeight = "bold";
   th.setAttribute("scope", "row");
@@ -96,6 +89,27 @@ function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
   return tbody;
 }
 
+function totalBalanceTemplate(balance) {
+  const result = balance.reduce((acc, curr) => {
+    let result;
+    acc = acc + curr;
+    result = acc;
+    return result;
+  }, 0);
+
+  const trTotal = document.createElement("tr");
+
+  const th = document.createElement("th");
+
+  const p = document.createElement("p");
+  p.textContent = `Total balance: ${result.toFixed(2)}`;
+
+  th.appendChild(p);
+  trTotal.appendChild(th);
+
+  return trTotal;
+}
+
 // table таблица и render users отображение в ней пользователей
 function renderUsers(usersList) {
   // создать фрагмент
@@ -103,14 +117,18 @@ function renderUsers(usersList) {
   // создать элемент таблицы и дать ей классы bootstrap
   const table = document.createElement("table");
   table.classList.add("table-dark", "table");
-
+  let totalBalance;
   Object.values(usersList).forEach((user) => {
+    let result = usersList.map((user) => Number(user.balance));
+
+    totalBalance = totalBalanceTemplate(result);
     const tbody = tbodyTemplate(user);
     table.appendChild(thead);
     table.appendChild(tbody);
+
     fragment.appendChild(table);
   });
-
+  table.appendChild(totalBalance);
   usersContainer.appendChild(fragment);
 }
 renderUsers(usrs);
