@@ -96,18 +96,23 @@ function totalBalanceTemplate(balance) {
     result = acc;
     return result;
   }, 0);
+  const totalDiv = document.createElement("div");
+
+  // totalDiv.classList.add("w-100", "d-flex", "col");
+  // totalDiv.style.alignContent = "end";
 
   const trTotal = document.createElement("tr");
 
-  const th = document.createElement("th");
+  const thTotal = document.createElement("th");
 
-  const p = document.createElement("p");
-  p.textContent = `Total balance: ${result.toFixed(2)}`;
+  const pTotal = document.createElement("p");
+  pTotal.textContent = `Total balance: ${result.toFixed(2)}`;
 
-  th.appendChild(p);
-  trTotal.appendChild(th);
+  thTotal.appendChild(pTotal);
+  trTotal.appendChild(thTotal);
+  totalDiv.appendChild(trTotal);
 
-  return trTotal;
+  return totalDiv;
 }
 
 // table таблица и render users отображение в ней пользователей
