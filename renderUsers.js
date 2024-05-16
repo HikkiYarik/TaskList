@@ -62,7 +62,6 @@ function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
   th.style.color = "black";
   th.style.fontWeight = "bold";
   th.setAttribute("scope", "row");
-
   th.textContent = number;
 
   // создать элемент tdName и дать ему классы и стили

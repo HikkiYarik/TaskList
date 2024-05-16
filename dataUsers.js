@@ -44,21 +44,15 @@ const users = [
 
 function getUsers() {
   const newUsers = [];
-  // function keys() {
-  //   const keys = Object.keys(users);
-  //   for (key in keys) {
-  //     return key;
-  //   }
-  // }
 
-  users.forEach((obj) => {
+  users.forEach((obj, index) => {
     const newObj = {
       [map[0]]: `${obj._id}`,
       [map[1]]: `${obj.name}`,
       [map[2]]: `${obj.isActive}`,
       [map[3]]: `${obj.balance}`,
       [map[4]]: `${obj.email}`,
-      // [map[5]]: keys(),
+      [map[5]]: `${index + 1}`,
     };
     newUsers.push(newObj);
   });
