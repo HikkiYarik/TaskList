@@ -28,8 +28,30 @@ function theadTemplate() {
   const th4 = document.createElement("th");
   th4.setAttribute("scope", "col");
   th4.textContent = "Balance";
+  const sortBtn = document.createElement("button");
+  sortBtn.setAttribute("type", "button");
+  sortBtn.classList.add("btn", "btn-outline-primary");
 
-  // добавитьь детей в родителей
+  const svgArrow = document.createElement("svg");
+  svgArrow.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svgArrow.setAttribute("width", "16");
+  svgArrow.setAttribute("height", "16");
+  svgArrow.setAttribute("fill", "currentColor");
+  svgArrow.classList.add("bi", "bi-arrow-right");
+  svgArrow.setAttribute("viewBox", "0 0 16 16");
+
+  const path = document.createElement("path");
+  path.setAttribute("fill-rule", "evenodd");
+  path.setAttribute(
+    "d",
+    "M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+  );
+
+  svgArrow.appendChild(path);
+  sortBtn.appendChild(svgArrow);
+  th4.appendChild(sortBtn);
+
+  // добавить детей в родителей
   tr.appendChild(th1);
   tr.appendChild(th2);
   tr.appendChild(th3);
@@ -52,7 +74,6 @@ function tbodyTemplate({
   number,
   wiki,
 } = {}) {
-  console.log(wiki);
   // создать элемент tbody
   const tbody = document.createElement("tbody");
   // создать элемент tr
@@ -69,7 +90,7 @@ function tbodyTemplate({
   // создать элемент tdName и дать ему классы и стили
   const tdName = document.createElement("td");
   tdName.classList.add("table-secondary");
-
+  // nameLink имя с ссылкой на статью в wiki каждого юзера
   const nameLink = document.createElement("a");
   nameLink.setAttribute("href", wiki);
   nameLink.setAttribute("target", "_blank");
