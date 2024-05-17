@@ -30,25 +30,30 @@ function theadTemplate() {
   th4.textContent = "Balance";
   const sortBtn = document.createElement("button");
   sortBtn.setAttribute("type", "button");
-  sortBtn.classList.add("btn", "btn-outline-primary");
+  sortBtn.classList.add("btn", "btn-outline-dark");
 
-  const svgArrow = document.createElement("svg");
-  svgArrow.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  svgArrow.setAttribute("width", "16");
-  svgArrow.setAttribute("height", "16");
-  svgArrow.setAttribute("fill", "currentColor");
-  svgArrow.classList.add("bi", "bi-arrow-right");
-  svgArrow.setAttribute("viewBox", "0 0 16 16");
+  // const svgArrow = document.createElement("svg");
+  // svgArrow.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  // svgArrow.setAttribute("width", "16");
+  // svgArrow.setAttribute("height", "16");
+  // svgArrow.setAttribute("fill", "currentColor");
+  // svgArrow.classList.add("bi", "bi-arrow-up-square");
+  // svgArrow.setAttribute("viewBox", "0 0 16 16");
 
-  const path = document.createElement("path");
-  path.setAttribute("fill-rule", "evenodd");
-  path.setAttribute(
-    "d",
-    "M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-  );
+  // const path = document.createElement("path");
+  // path.setAttribute("fill-rule", "evenodd");
+  // path.setAttribute(
+  //   "d",
+  //   "M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"
+  // );
 
-  svgArrow.appendChild(path);
-  sortBtn.appendChild(svgArrow);
+  // svgArrow.appendChild(path);
+  // sortBtn.appendChild(svgArrow);
+
+  const i = document.createElement("i");
+  i.classList.add("bi", "bi-arrow-up-square");
+
+  sortBtn.appendChild(i);
   th4.appendChild(sortBtn);
 
   // добавить детей в родителей
