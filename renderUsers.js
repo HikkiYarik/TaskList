@@ -89,30 +89,36 @@ function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
   return tbody;
 }
 
+// Каркас итогового общего баланса юзеров
 function totalBalanceTemplate(balance) {
+  // В balance мы передаём массив балансов всех юзеров из функции renderUsers
+  // Просуммировать балансы всех юзеров
   const result = balance.reduce((acc, curr) => {
     let result;
     acc = acc + curr;
     result = acc;
     return result;
   }, 0);
-  const totalDiv = document.createElement("div");
 
-  // totalDiv.classList.add("w-100", "d-flex", "col");
-  // totalDiv.style.alignContent = "end";
+  // элемент футера для таблицы
+  const tfoot = document.createElement("tfoot");
 
-  const trTotal = document.createElement("tr");
+  // контейнер для строки таблицы
+  const tr = document.createElement("tr");
 
-  const thTotal = document.createElement("th");
+  // сама строка таблицы, здесь примечателен аттрибут colspan
+  // в текст контент записываем результат суммирования балансов юзеров с двумя знаками после запятой
+  const td = document.createElement("td");
+  td.setAttribute("colspan", "4");
+  td.style.textAlign = "end";
+  td.style.fontWeight = "bold";
+  td.textContent = `Total balance: ${result.toFixed(2)}`;
 
-  const pTotal = document.createElement("p");
-  pTotal.textContent = `Total balance: ${result.toFixed(2)}`;
+  tr.appendChild(td);
+  tfoot.appendChild(tr);
 
-  thTotal.appendChild(pTotal);
-  trTotal.appendChild(thTotal);
-  totalDiv.appendChild(trTotal);
-
-  return totalDiv;
+  // вернуть собранный tfoot
+  return tfoot;
 }
 
 // table таблица и render users отображение в ней пользователей
@@ -121,19 +127,31 @@ function renderUsers(usersList) {
   const fragment = document.createDocumentFragment();
   // создать элемент таблицы и дать ей классы bootstrap
   const table = document.createElement("table");
-  table.classList.add("table-dark", "table");
-  let totalBalance;
-  Object.values(usersList).forEach((user) => {
-    let result = usersList.map((user) => Number(user.balance));
+  table.classList.add("table-dark", "table", "table-hover", "col");
 
+  // важно создать тотал баланс именно вне foreach и записать его в таблицу так же вне
+  // иначе тотал баланс у нас будет висеть после каждого пользователя
+  let totalBalance;
+
+  Object.values(usersList).forEach((user) => {
+    // создать массив из балансов всех юзеров, записать в result
+    let result = usersList.map((user) => Number(user.balance));
+    // записать в переменную totalBalance функцию возвращающую каркас(template)
+    // передать массив балансов в функцию totalBalanceTemplate
     totalBalance = totalBalanceTemplate(result);
+    // здесь записываем тело таблицы в переменную, она возвращает каркас(template)
+    // сюда уже передаём просто юзеров
     const tbody = tbodyTemplate(user);
+    // добавляем элементы в таблицу
     table.appendChild(thead);
     table.appendChild(tbody);
 
     fragment.appendChild(table);
   });
+  // последний элемент в таблицу, totalBalance
   table.appendChild(totalBalance);
   usersContainer.appendChild(fragment);
+
+  return table;
 }
-renderUsers(usrs);
+const table = renderUsers(usrs);
