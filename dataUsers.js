@@ -1,4 +1,4 @@
-const map = ["_id", "name", "isActive", "balance", "email", "number"];
+const map = ["_id", "name", "isActive", "balance", "email", "number", "wiki"];
 
 const users = [
   {
@@ -13,6 +13,7 @@ const users = [
     phone: "+1 (850) 411-2997",
     registered: "2018-08-13T04:28:45 -03:00",
     nestedField: { total: 300 },
+    wiki: "https://en.wikipedia.org/wiki/H._P._Lovecraft",
   },
   {
     _id: "5d220b10144ef972f6c2b332",
@@ -20,12 +21,13 @@ const users = [
     balance: 1464.63,
     age: 99,
     name: "Yukio Mishima",
-    gender: "female",
+    gender: "male",
     company: "KATAKANA",
     email: "goldenTemple@gmail.com",
     phone: "+1 (943) 463-2496",
     registered: "2016-12-09T05:15:34 -02:00",
     nestedField: { total: 400 },
+    wiki: "https://en.wikipedia.org/wiki/Yukio_Mishima",
   },
   {
     _id: "5d220b1083a0494655cdecf6",
@@ -39,6 +41,7 @@ const users = [
     phone: "+1 (890) 461-2088",
     registered: "2016-03-04T03:36:38 -02:00",
     nestedField: { total: 200 },
+    wiki: "https://en.wikipedia.org/wiki/Taras_Shevchenko",
   },
   {
     _id: "5d220b1083a0494655cdecf6",
@@ -52,6 +55,7 @@ const users = [
     phone: "+1 (890) 461-2088",
     registered: "2016-03-04T03:36:38 -02:00",
     nestedField: { total: 200 },
+    wiki: "https://en.wikipedia.org/wiki/Dante_Alighieri",
   },
 ];
 
@@ -68,6 +72,7 @@ function getUsers() {
       [map[3]]: `${obj.balance}`,
       [map[4]]: `${obj.email}`,
       [map[5]]: `${index + 1}`,
+      [map[6]]: `${obj.wiki}`,
     };
     newUsers.push(newObj);
   });

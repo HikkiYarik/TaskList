@@ -43,7 +43,16 @@ function theadTemplate() {
 const thead = theadTemplate();
 
 // tbody таблицы (основное тело, куда будут писаться пользователи.)
-function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
+function tbodyTemplate({
+  _id,
+  name,
+  email,
+  isActive,
+  balance,
+  number,
+  wiki,
+} = {}) {
+  console.log(wiki);
   // создать элемент tbody
   const tbody = document.createElement("tbody");
   // создать элемент tr
@@ -60,9 +69,13 @@ function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
   // создать элемент tdName и дать ему классы и стили
   const tdName = document.createElement("td");
   tdName.classList.add("table-secondary");
-  tdName.style.color = "black";
-  tdName.style.fontWeight = "bold";
-  tdName.textContent = name;
+
+  const nameLink = document.createElement("a");
+  nameLink.setAttribute("href", wiki);
+  nameLink.setAttribute("target", "_blank");
+  nameLink.style.color = "black";
+  nameLink.style.fontWeight = "bold";
+  nameLink.textContent = name;
 
   // создать элемент tdEmail и дать ему классы и стили
   const tdEmail = document.createElement("td");
@@ -80,6 +93,7 @@ function tbodyTemplate({ _id, name, email, isActive, balance, number } = {}) {
 
   // Добавляем детей в родителей, собираем конструкцию
   tr.appendChild(th);
+  tdName.appendChild(nameLink);
   tr.appendChild(tdName);
   tr.appendChild(tdEmail);
   tr.appendChild(tdBalance);
