@@ -48,12 +48,11 @@ function theadTemplate() {
   // );
 
   // svgArrow.appendChild(path);
-  // sortBtn.appendChild(svgArrow);
 
-  const i = document.createElement("i");
-  i.classList.add("bi", "bi-arrow-up-square");
+  //  const i = document.createElement('i')
+  //  i.classList.add('bi','bi-arrow-up-square')
 
-  sortBtn.appendChild(i);
+  sortBtn.appendChild(svgArrow);
   th4.appendChild(sortBtn);
 
   // добавить детей в родителей
