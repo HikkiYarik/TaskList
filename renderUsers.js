@@ -16,10 +16,36 @@ function theadTemplate() {
   const th1 = document.createElement("th");
   th1.setAttribute("scope", "col");
   th1.textContent = "#";
+
+  /* reset sort btn */
+  // const resetSortBtn = document.createElement("button");
+  // resetSortBtn.setAttribute("type", "button");
+  // resetSortBtn.addEventListener("click", getUsers());
+  // resetSortBtn.classList.add("btn", "btn-dark", "reset-sort-btn");
+
+  // const i0 = document.createElement("i");
+  // i0.classList.add("bi", "bi-arrow-clockwise");
+  // i0.textContent = "reset sort";
+
+  // resetSortBtn.appendChild(i0);
+  // th1.appendChild(resetSortBtn);
+
   // создать элемент th2 и дать ему атрибуты
   const th2 = document.createElement("th");
   th2.setAttribute("scope", "col");
   th2.textContent = "Name";
+  // sort btn для сортировки юзеров по именам
+  const sortBtnNames = document.createElement("button");
+  sortBtnNames.setAttribute("type", "button");
+  sortBtnNames.setAttribute("onclick", "literasSortTable(0)");
+  sortBtnNames.classList.add("btn", "btn-dark", "sort-names-btn");
+  // иконка стрелка
+  const i1 = document.createElement("i");
+  i1.classList.add("bi", "bi-arrow-up", "sort-names-arrow");
+
+  // добавить стрелку в кнопку и кнопку в th
+  sortBtnNames.appendChild(i1);
+  th2.appendChild(sortBtnNames);
   // создать элемент th3 и дать ему атрибуты
   const th3 = document.createElement("th");
   th3.setAttribute("scope", "col");
@@ -28,17 +54,19 @@ function theadTemplate() {
   const th4 = document.createElement("th");
   th4.setAttribute("scope", "col");
   th4.textContent = "Balance";
-  // sort btn для сортировки балансов юзеров
-  const sortBtn = document.createElement("button");
-  sortBtn.setAttribute("type", "button");
-  sortBtn.classList.add("btn", "btn-dark", "sort-balance-btn");
+
+  // sort btn для сортировки юзеров по балансу
+  const sortBtnBalance = document.createElement("button");
+  sortBtnBalance.setAttribute("type", "button");
+  sortBtnBalance.setAttribute("onclick", "balancesSortTable(0)");
+  sortBtnBalance.classList.add("btn", "btn-dark", "sort-balance-btn");
   // иконка стрелка
-  const i = document.createElement("i");
-  i.classList.add("bi", "bi-arrow-up", "sort-balance-arrow");
+  const i2 = document.createElement("i");
+  i2.classList.add("bi", "bi-arrow-up", "sort-balance-arrow");
 
   // добавить стрелку в кнопку и кнопку в th
-  sortBtn.appendChild(i);
-  th4.appendChild(sortBtn);
+  sortBtnBalance.appendChild(i2);
+  th4.appendChild(sortBtnBalance);
 
   // добавить детей в родителей
   tr.appendChild(th1);
@@ -150,7 +178,8 @@ function renderUsers(usersList) {
   // создать фрагмент
   const fragment = document.createDocumentFragment();
   // создать элемент таблицы и дать ей классы bootstrap
-  const table = document.createElement("table");
+  const table = document.createElement("table", "users-table");
+  table.setAttribute("id", "myTable");
   table.classList.add("table-dark", "table", "table-hover", "col");
 
   // важно создать тотал баланс именно вне foreach и записать его в таблицу так же вне
