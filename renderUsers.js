@@ -18,17 +18,17 @@ function theadTemplate() {
   th1.textContent = "#";
 
   /* reset sort btn */
-  // const resetSortBtn = document.createElement("button");
-  // resetSortBtn.setAttribute("type", "button");
-  // resetSortBtn.addEventListener("click", getUsers());
-  // resetSortBtn.classList.add("btn", "btn-dark", "reset-sort-btn");
+  const resetSortBtn = document.createElement("button");
+  resetSortBtn.setAttribute("type", "button");
+  resetSortBtn.addEventListener("click", renderUsers);
+  resetSortBtn.classList.add("btn", "btn-dark", "reset-sort-btn");
 
-  // const i0 = document.createElement("i");
-  // i0.classList.add("bi", "bi-arrow-clockwise");
-  // i0.textContent = "reset sort";
+  const i0 = document.createElement("i");
+  i0.classList.add("bi", "bi-arrow-clockwise");
+  i0.textContent = "reset sort";
 
-  // resetSortBtn.appendChild(i0);
-  // th1.appendChild(resetSortBtn);
+  resetSortBtn.appendChild(i0);
+  th1.appendChild(resetSortBtn);
 
   // создать элемент th2 и дать ему атрибуты
   const th2 = document.createElement("th");
@@ -37,7 +37,7 @@ function theadTemplate() {
   // sort btn для сортировки юзеров по именам
   const sortBtnNames = document.createElement("button");
   sortBtnNames.setAttribute("type", "button");
-  sortBtnNames.setAttribute("onclick", "literasSortTable(0)");
+  sortBtnNames.setAttribute("onclick", "namesSortHandler(1)");
   sortBtnNames.classList.add("btn", "btn-dark", "sort-names-btn");
   // иконка стрелка
   const i1 = document.createElement("i");
@@ -58,7 +58,6 @@ function theadTemplate() {
   // sort btn для сортировки юзеров по балансу
   const sortBtnBalance = document.createElement("button");
   sortBtnBalance.setAttribute("type", "button");
-  sortBtnBalance.setAttribute("onclick", "balancesSortTable(0)");
   sortBtnBalance.classList.add("btn", "btn-dark", "sort-balance-btn");
   // иконка стрелка
   const i2 = document.createElement("i");
@@ -127,7 +126,7 @@ function tbodyTemplate({
   tdBalance.classList.add("table-secondary");
   tdBalance.style.color = "black";
   tdBalance.style.fontWeight = "bold";
-  tdBalance.textContent = balance;
+  tdBalance.textContent = Number(balance);
 
   // Добавляем детей в родителей, собираем конструкцию
   tr.appendChild(th);
@@ -208,4 +207,4 @@ function renderUsers(usersList) {
 
   return table;
 }
-const table = renderUsers(usrs);
+renderUsers(usrs);

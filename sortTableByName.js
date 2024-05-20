@@ -1,21 +1,9 @@
 const sortBtnNames = document.querySelector(".sort-names-btn");
 const sortArrowEl2 = document.querySelector(".sort-names-arrow");
 
-sortBtnNames.addEventListener("click", sortNamesHandler);
-
-function sortNamesHandler(event) {
-  if (event.target.classList.contains("bi-arrow-up")) {
-    sortArrowEl2.classList.remove("bi-arrow-up");
-    sortArrowEl2.classList.add("bi-arrow-down");
-  } else if (event.target.classList.contains("bi-arrow-down")) {
-    sortArrowEl2.classList.remove("bi-arrow-down");
-    sortArrowEl2.classList.add("bi-arrow-up");
-  }
-}
-
 const myTable = document.getElementById("myTable");
 
-function literasSortTable(n) {
+function namesSortHandler(n) {
   let table,
     rows,
     switching,
@@ -47,12 +35,16 @@ function literasSortTable(n) {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           // Если да, отметьте его как переключатель и разорвите цикл:
           shouldSwitch = true;
+          sortArrowEl2.classList.remove("bi-arrow-up");
+          sortArrowEl2.classList.add("bi-arrow-down");
           break;
         }
       } else if (dir == "desc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           // Если да, отметьте его как переключатель и разорвите цикл:
           shouldSwitch = true;
+          sortArrowEl2.classList.remove("bi-arrow-down");
+          sortArrowEl2.classList.add("bi-arrow-up");
           break;
         }
       }
@@ -69,20 +61,5 @@ function literasSortTable(n) {
         switching = true;
       }
     }
-  }
-}
-
-const sortBtnBalance = document.querySelector(".sort-balance-btn");
-const sortArrowEl = document.querySelector(".sort-balance-arrow");
-
-sortBtnBalance.addEventListener("click", sortBalanceHandler);
-
-function sortBalanceHandler(event) {
-  if (event.target.classList.contains("bi-arrow-up")) {
-    sortArrowEl.classList.remove("bi-arrow-up");
-    sortArrowEl.classList.add("bi-arrow-down");
-  } else if (event.target.classList.contains("bi-arrow-down")) {
-    sortArrowEl.classList.remove("bi-arrow-down");
-    sortArrowEl.classList.add("bi-arrow-up");
   }
 }
