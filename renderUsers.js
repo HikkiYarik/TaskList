@@ -192,6 +192,7 @@ function renderUsers(usersList) {
     // передать массив балансов в функцию totalBalanceTemplate
 
     totalBalance = totalBalanceTemplate(result);
+
     // здесь записываем тело таблицы в переменную, она возвращает каркас(template)
     // сюда уже передаём просто юзеров
     const tbody = tbodyTemplate(user);

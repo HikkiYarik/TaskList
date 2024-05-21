@@ -2,7 +2,7 @@ const sortBtnBalance = document.querySelector(".sort-balance-btn");
 const sortArrowEl = document.querySelector(".sort-balance-arrow");
 
 sortBtnBalance.addEventListener("click", arrowBalanceHandler);
-
+sortBtnBalance.addEventListener("click", sortTableByBalance(2));
 function arrowBalanceHandler(event) {
   if (event.target.classList.contains("bi-arrow-up")) {
     sortArrowEl.classList.remove("bi-arrow-up");
@@ -13,10 +13,8 @@ function arrowBalanceHandler(event) {
   }
 }
 
-sortBtnBalance.addEventListener("click", sortBalanceHandler(2));
-
-function sortBalanceHandler(n) {
-  let table,
+function sortTableByBalance(n) {
+  var table,
     rows,
     switching,
     i,
@@ -25,26 +23,44 @@ function sortBalanceHandler(n) {
     shouldSwitch,
     dir,
     switchcount = 0;
-  table = document.getElementById("myTable");
+  table = document.getElementById("MyTable");
+  console.log(table);
   switching = true;
-  // Установить направление сортировки по возрастанию:
-  dir = "asc";
-  // Создайте цикл, который будет продолжаться до тех пор, пока не будет выполнено переключение:
-  while (switching) {
-    // Переключение не производится
-    switching = false;
-    rows = Array.from(table.rows);
-    let nums = [];
-    // Прокрутите все строки таблицы (кроме первой, которая содержит заголовки таблицы):
-    for (i = 1; i < rows.length - 1; i++) {
-      // Начнем с того, что переключения быть не должно:
-      shouldSwitch = false;
-      // Получите два элемента, которые хотите сравнить: один из текущей строки и один из следующей:
-      x = rows[i].getElementsByTagName("TD")[n];
-      nums.push(Number(x.textContent));
-    }
 
-    nums.sort((prev, next) => prev - next);
-    console.log(nums);
+  dir = "asc";
+
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+
+      switchcount++;
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
   }
 }
