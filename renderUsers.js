@@ -25,7 +25,7 @@ function theadTemplate() {
 
   const i0 = document.createElement("i");
   i0.classList.add("bi", "bi-arrow-clockwise", "reset-clockwise");
-  i0.textContent = "reset sort";
+  // i0.textContent = "reset sort";
 
   resetSortBtn.appendChild(i0);
   th1.appendChild(resetSortBtn);
