@@ -24,7 +24,7 @@ function theadTemplate() {
   resetSortBtn.classList.add("btn", "btn-dark", "reset-sort-btn");
 
   const i0 = document.createElement("i");
-  i0.classList.add("bi", "bi-arrow-clockwise");
+  i0.classList.add("bi", "bi-arrow-clockwise", "reset-clockwise");
   i0.textContent = "reset sort";
 
   resetSortBtn.appendChild(i0);
