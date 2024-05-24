@@ -16,12 +16,8 @@ function arrowBalanceHandler(event) {
 function sortTableByBalance() {
   const table = document.getElementById("myTable");
   const tableRows = table.rows;
-  let arrs = Array.from(tableRows, (row) => [
-    row,
-    row.cells[3].innerHTML,
-  ]).slice(1, -1);
-
-  console.log(arrs);
+  let arrs = Array.from(tableRows, (row) => [row, row.cells[3]]).slice(1, -1);
+  arrs = arrs.forEach((arr) => console.log(+arr[1].textContent));
 }
 
 //   let table, rows, switching, i, x, y, shouldSwitch;
