@@ -14,44 +14,45 @@ function arrowBalanceHandler(event) {
 }
 
 function sortTableByBalance() {
-  var table,
-    rows,
-    switching,
-    i,
-    x,
-    y,
-    shouldSwitch,
-    table = document.getElementById("myTable");
-  switching = true;
+  const table = document.getElementById("myTable");
+  const tableRows = table.rows;
+  let arrs = Array.from(tableRows, (row) => [
+    row,
+    row.cells[3].innerHTML,
+  ]).slice(1, -1);
 
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-
-    for (i = 1; i < rows.length - 1; i++) {
-      shouldSwitch = false;
-
-      x = rows[i].getElementsByTagName("TD")[2];
-      y = rows[i + 1].getElementsByTagName("TD")[2];
-
-      if (Number(x.innerHTML) > Number(y.innerHTML)) {
-        shouldSwitch = true;
-        break;
-      }
-      //   else if (Number(x.innerHTML) < Number(y.innerHTML)) {
-      //     shouldSwitch = false;
-      //     break;
-      //   }
-    }
-
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-    // else {
-    //   rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-
-    //   switching = false;
-    // }
-  }
+  console.log(arrs);
 }
+
+//   let table, rows, switching, i, x, y, shouldSwitch;
+//   table = document.getElementById("myTable");
+//   switching = true;
+
+//   while (switching) {
+//     switching = false;
+//     rows = table.rows;
+
+//     for (i = 1; i < rows.length - 1; i++) {
+//       shouldSwitch = false;
+
+//       x = rows[i].getElementsByTagName("TD")[2];
+//       y = rows[i + 1].getElementsByTagName("TD")[2];
+
+//       if (Number(x.textContent) > Number(y.textContent)) {
+//         shouldSwitch = true;
+//         break;
+//       } else {
+//         if (parseFloat(y.textContent) > parseFloat(x.textContent)) {
+//           shouldSwitch = false;
+//         }
+//       }
+//     }
+//     console.log(shouldSwitch);
+//     if (shouldSwitch) {
+//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+//       switching = true;
+//     } else if (!shouldSwitch) {
+//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i].nextSibling);
+//       switching = true;
+//     }
+//   }

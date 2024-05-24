@@ -4,7 +4,7 @@ const resetIcon = document.querySelector(".reset-clockwise");
 resetBtn.addEventListener("click", resetTable);
 
 function resetTable() {
-  var table, rows, switching, i, x, y, shouldSwitch;
+  let table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("myTable");
   switching = true;
 

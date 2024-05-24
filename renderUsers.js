@@ -123,7 +123,7 @@ function tbodyTemplate({
 
   // создать элемент tdBalance и дать ему классы и стили
   const tdBalance = document.createElement("td");
-  tdBalance.classList.add("table-secondary");
+  tdBalance.classList.add("table-secondary", "tdbalance");
   tdBalance.style.color = "black";
   tdBalance.style.fontWeight = "bold";
   tdBalance.textContent = Number(balance);
