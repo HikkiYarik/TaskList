@@ -15,40 +15,15 @@ function arrowBalanceHandler(event) {
 
 function sortTableByBalance() {
   const table = document.getElementById("myTable");
-  const tableRows = table.rows;
-  let arrs = Array.from(tableRows, (row) => [row, row.cells[3]]).slice(1, -1);
-  arrs = arrs.forEach((arr) => console.log(+arr[1].textContent));
+  const tableRows = table.querySelectorAll("tr:not(thead>tr,tfoot>tr)");
+  const arr = Array.from(tableRows, (row) => [row, +row.cells[3].textContent]);
+  arr.sort(([, a], [, b]) => a - b);
+  for (const [elem] of arr) {
+    table.insertAdjacentElement("beforeend", elem);
+  }
+
+  // arr.sort(([, a], [, b]) => b - a);
+  // for (const [elem] of arr) {
+  //   table.appendChild(elem);
+  // }
 }
-
-//   let table, rows, switching, i, x, y, shouldSwitch;
-//   table = document.getElementById("myTable");
-//   switching = true;
-
-//   while (switching) {
-//     switching = false;
-//     rows = table.rows;
-
-//     for (i = 1; i < rows.length - 1; i++) {
-//       shouldSwitch = false;
-
-//       x = rows[i].getElementsByTagName("TD")[2];
-//       y = rows[i + 1].getElementsByTagName("TD")[2];
-
-//       if (Number(x.textContent) > Number(y.textContent)) {
-//         shouldSwitch = true;
-//         break;
-//       } else {
-//         if (parseFloat(y.textContent) > parseFloat(x.textContent)) {
-//           shouldSwitch = false;
-//         }
-//       }
-//     }
-//     console.log(shouldSwitch);
-//     if (shouldSwitch) {
-//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//       switching = true;
-//     } else if (!shouldSwitch) {
-//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i].nextSibling);
-//       switching = true;
-//     }
-//   }

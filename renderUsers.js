@@ -25,7 +25,6 @@ function theadTemplate() {
 
   const i0 = document.createElement("i");
   i0.classList.add("bi", "bi-arrow-clockwise", "reset-clockwise");
-  // i0.textContent = "reset sort";
 
   resetSortBtn.appendChild(i0);
   th1.appendChild(resetSortBtn);
@@ -190,9 +189,7 @@ function renderUsers(usersList) {
     let result = usersList.map((user) => Number(user.balance));
     // записать в переменную totalBalance функцию возвращающую каркас(template)
     // передать массив балансов в функцию totalBalanceTemplate
-
     totalBalance = totalBalanceTemplate(result);
-
     // здесь записываем тело таблицы в переменную, она возвращает каркас(template)
     // сюда уже передаём просто юзеров
     const tbody = tbodyTemplate(user);
