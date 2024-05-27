@@ -4,28 +4,11 @@ const resetIcon = document.querySelector(".reset-clockwise");
 resetBtn.addEventListener("click", resetTable);
 
 function resetTable() {
-  let table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-
-    for (i = 1; i < rows.length - 1; i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TH")[0];
-      y = rows[i + 1].getElementsByTagName("TH")[0];
-
-      if (Number(x.innerHTML) > Number(y.innerHTML)) {
-        shouldSwitch = true;
-        break;
-      }
-    }
-
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
+  const table = document.getElementById("myTable");
+  const tableRows = table.querySelectorAll("tr:not(thead>tr,tfoot>tr)");
+  const arr = Array.from(tableRows, (row) => [row, +row.cells[0].textContent]);
+  arr.sort(([, a], [, b]) => a - b);
+  for (const [elem] of arr) {
+    table.insertAdjacentElement("beforeend", elem);
   }
 }

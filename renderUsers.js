@@ -89,8 +89,6 @@ function tbodyTemplate({
   number,
   wiki,
 } = {}) {
-  // создать элемент tbody
-  const tbody = document.createElement("tbody");
   // создать элемент tr
   const tr = document.createElement("tr");
   // создать элемент th и дать ему классы и стили
@@ -133,10 +131,9 @@ function tbodyTemplate({
   tr.appendChild(tdName);
   tr.appendChild(tdEmail);
   tr.appendChild(tdBalance);
-  tbody.appendChild(tr);
 
   // вернуть собранный tbody
-  return tbody;
+  return tr;
 }
 
 // Каркас итогового общего баланса юзеров
@@ -179,28 +176,29 @@ function renderUsers(usersList) {
   const table = document.createElement("table", "users-table");
   table.setAttribute("id", "myTable");
   table.classList.add("table-dark", "table", "table-hover", "col");
-
   // важно создать тотал баланс именно вне foreach и записать его в таблицу так же вне
   // иначе тотал баланс у нас будет висеть после каждого пользователя
+  let tbody;
   let totalBalance;
+  // создать массив из балансов всех юзеров, записать в result
 
+  let result = usersList.map((user) => +user.balance);
+  console.log(result);
   Object.values(usersList).forEach((user) => {
-    // создать массив из балансов всех юзеров, записать в result
-    let result = usersList.map((user) => Number(user.balance));
     // записать в переменную totalBalance функцию возвращающую каркас(template)
     // передать массив балансов в функцию totalBalanceTemplate
     totalBalance = totalBalanceTemplate(result);
     // здесь записываем тело таблицы в переменную, она возвращает каркас(template)
     // сюда уже передаём просто юзеров
-    const tbody = tbodyTemplate(user);
-    // добавляем элементы в таблицу
-    table.appendChild(thead);
+    tbody = tbodyTemplate(user);
     table.appendChild(tbody);
-
-    fragment.appendChild(table);
+    // добавляем элементы в таблицу
   });
-  // последний элемент в таблицу, totalBalance
+  table.appendChild(thead);
   table.appendChild(totalBalance);
+  fragment.appendChild(table);
+  // последний элемент в таблицу, totalBalance
+
   usersContainer.appendChild(fragment);
 
   return table;
