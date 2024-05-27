@@ -1,5 +1,4 @@
 const resetBtn = document.querySelector(".reset-sort-btn");
-const resetIcon = document.querySelector(".reset-clockwise");
 
 resetBtn.addEventListener("click", resetTable);
 

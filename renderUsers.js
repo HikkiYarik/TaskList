@@ -183,7 +183,7 @@ function renderUsers(usersList) {
   // создать массив из балансов всех юзеров, записать в result
 
   let result = usersList.map((user) => +user.balance);
-  console.log(result);
+
   Object.values(usersList).forEach((user) => {
     // записать в переменную totalBalance функцию возвращающую каркас(template)
     // передать массив балансов в функцию totalBalanceTemplate
