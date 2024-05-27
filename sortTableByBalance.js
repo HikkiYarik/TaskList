@@ -22,12 +22,16 @@ function sortTableByBalance() {
     for (const [elem] of arr) {
       table.insertAdjacentElement("beforeend", elem);
     }
+    sortArrowEl.classList.remove("bi-arrow-up");
+    sortArrowEl.classList.add("bi-arrow-down");
     switcher = true;
   } else if (switcher === true) {
     arr.sort(([, a], [, b]) => b - a);
     for (const [elem] of arr) {
-      table.appendChild(elem);
+      table.insertAdjacentElement("beforeend", elem);
     }
+    sortArrowEl.classList.remove("bi-arrow-down");
+    sortArrowEl.classList.add("bi-arrow-up");
     switcher = false;
   }
 }
