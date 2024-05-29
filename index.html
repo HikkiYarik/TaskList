@@ -35,16 +35,18 @@
     </style>
   </head>
   <body>
-    <div class="head-div bg-primary">
-      <nav class="navbar-nav">
-        <li class="nav-item col col-lg-auto">
-          <button class="btn btn-primary switch-btn">
-            <p class="font-weight-bold h4 switch-text">
-              Task list. Click for switch to "Users"
-            </p>
-          </button>
-        </li>
-      </nav>
+    <div class="head-div bg-primary d-flex">
+      <button class="btn btn-primary w-100 switch-btn">
+        <p class="font-weight-bold h4 switch-text">
+          Task list. Click for switch to "Users"
+        </p>
+      </button>
+      <div class="col-auto d-flex">
+        <button class="btn btn-primary shadow" id="btnSwitch">
+          Switch
+          <i class="bi bi-moon-stars-fill theme-icon"></i>
+        </button>
+      </div>
     </div>
     <div class="users-wrapper d-none">
       <div class="users-list-section mt-5">

@@ -17,6 +17,8 @@ function switchWrapper() {
     wrapperUsers.classList.remove("d-none");
     switchBtn.classList.remove("btn-primary");
     switchBtn.classList.add("btn-dark");
+    btnSwitchTheme.classList.remove("btn-primary");
+    btnSwitchTheme.classList.add("btn-dark");
     switchText.textContent = "Users. Click for switch to 'Task list'";
     headDiv.classList.remove("bg-primary");
     headDiv.classList.add("bg-dark");
@@ -30,6 +32,8 @@ function switchWrapper() {
     wrapper.classList.remove("d-none");
     switchBtn.classList.remove("btn-dark");
     switchBtn.classList.add("btn-primary");
+    btnSwitchTheme.classList.remove("btn-dark");
+    btnSwitchTheme.classList.add("btn-primary");
     switchText.textContent = "Task list. Click for switch to 'Users'";
     headDiv.classList.remove("bg-dark");
     headDiv.classList.add("bg-primary");
